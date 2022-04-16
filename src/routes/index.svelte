@@ -1,2 +1,10 @@
-<h1 class="text-red-700">Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+    import Logic from "../components/logic/index.svelte"
+
+
+
+</script>
+
+<div class="h-screen p-8 bg-green-900 text-white">
+    <Logic />
+</div>
