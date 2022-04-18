@@ -1,5 +1,4 @@
 <script>
-var deck = []
 
 var cardValue = (i)=> i%13>10?10:i%13
 
@@ -14,21 +13,35 @@ var cardFace = (face)=> {
         return "hearts"
 }
 
+/* vv card shuffler vv */
+var deck = []
 let card;
-for (let i=1; i<=52; i++){
-    card = {id:i,value:cardValue(i),face:cardFace(i)}
-    deck.push(card)
+let shuffleDeck = () => {
+    for (let i=1; i<=52; i++){
+        card = {id:i,value:cardValue(i),face:cardFace(i)}
+        deck.push(card)
+    }
+}
+shuffleDeck()
+/* ^^ card shuffler ^^ */
+
+
+
+let draw = ()=> {
+    let length = deck.length
+    let draw_pick = Math.floor((Math.random()*length))
+
+    return  deck.splice(draw_pick,1)
+
 }
 
 
-// for (var i =1; i<=52; i++){
-//     deck.push(
-//        // {id:i,value:cardValue(i),face:cardFace(i)}
-//        {"id":i}
-//     )
-// }
+let draws = []
+for (let i=0; i<52; i++){
+    draws.push(draw())
+}
 
-
+//console.log(draws)
 
 </script>
 
@@ -40,7 +53,16 @@ for (let i=1; i<=52; i++){
     <li>Dealer card 2 face up</li>
 </ul>
 
+<!-- 
 {deck[27].id}
 {deck[27].value}
-{deck[27].face}
+{deck[27].face} -->
+
+{#each draws as card, index }
+   <p class="text-red-400"> {index+": "} {Object.entries(card[0]).map(x=>x.join(": ")).join("\n")} </p>
+    <!-- {Object.entries(card[0][0]).map(x=>x.join(":")).join("\n")} <br> -->
+{/each}
+
+
+
 
